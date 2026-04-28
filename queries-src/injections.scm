@@ -24,6 +24,16 @@
   (command_body) @injection.content
   (#set! injection.language "bash"))
 
+((string) @injection.content                                                   ; SKIP-NVIM SKIP-HELIX SKIP-ZED SKIP-LAPCE
+  (#match? @injection.content "^x('''|\"\"\")")                                ; SKIP-NVIM KIP-HELIX SKIP-ZED SKIP-LAPCE
+  (#offset! @injection.content 0 4 0 -3)                                       ; SKIP-NVIM KIP-HELIX SKIP-ZED SKIP-LAPCE
+  (#set! injection.language "bash"))                                           ; SKIP-NVIM KIP-HELIX SKIP-ZED SKIP-LAPCE
+
+((string) @injection.content                                                   ; SKIP-NVIM SKIP-HELIX SKIP-ZED SKIP-LAPCE
+  (#match? @injection.content "^x('|\")")                                      ; SKIP-NVIM SKIP-HELIX SKIP-ZED SKIP-LAPCE
+  (#offset! @injection.content 0 2 0 -1)                                       ; SKIP-NVIM SKIP-HELIX SKIP-ZED SKIP-LAPCE
+  (#set! injection.language "bash"))                                           ; SKIP-NVIM SKIP-HELIX SKIP-ZED SKIP-LAPCE
+
 ; ================ Global language specified ================
 ; Global language is set with something like one of the following:
 ;

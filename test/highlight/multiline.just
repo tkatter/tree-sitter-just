@@ -8,7 +8,7 @@ foo:
     echo foo {{ a }}
 bar:
     echo bar {{ os() }}
-#               ^^ function.call
+#               ^^ function.builtin
 
 # Wrapped dependencies
 baz: foo \

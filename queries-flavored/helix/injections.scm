@@ -26,6 +26,10 @@
   (command_body) @injection.content
   (#set! injection.language "bash"))
 
+  (#match? @injection.content "^x('''|\"\"\")")                                 KIP-HELIX
+  (#offset! @injection.content 0 4 0 -3)                                        KIP-HELIX
+  (#set! injection.language "bash"))                                            KIP-HELIX
+
 ; ================ Global language specified ================
 ; Global language is set with something like one of the following:
 ;

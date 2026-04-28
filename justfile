@@ -7,6 +7,10 @@ obj_dir := target / "obj"
 debug_out := bin_dir / "debug.out"
 fuzz_out := bin_dir / "fuzz.out"
 
+
+world := x"${XDG_CONFIG_HOME:-'unset'}"
+my_string := f'hello {{world}}'
+
 ts_path := justfile_directory() / "repositories" / "tree-sitter"
 ts_repo := "https://github.com/tree-sitter/tree-sitter"
 ts_branch := "release-0.24" # release tags aren't on `master`
@@ -54,7 +58,8 @@ reset := "\\033[0m"
 
 # List all recipes
 default:
-	@just --list
+	just --evaluate my_string
+# @just --list
 
 # Verify that a tool is installed
 _check-installed +dep:
@@ -389,10 +394,11 @@ debug-run *file-names: debug-build
 
 # Build and run the fuzzer
 fuzz *extra-args: (gen "--debug-build") _clone-repo-tree-sitter _out-dirs
-	#!/bin/sh
+	#!/bin/bash
 	set -eaux
 
 	"{{ fuzzer / "build-corpus.py" }}"
+	thomas_test="${HOME:-'unset'}"
 
 	artifacts="{{fuzzer}}/failures/"
 	corpus="{{fuzzer}}/corpus"

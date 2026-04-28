@@ -34,7 +34,7 @@ combined := "foo" / os() / bar
 #        ^^ operator
 #           ^^^^^ string
 #                 ^ operator
-#                   ^^ function.call
+#                   ^^ function.builtin
 #                      ^^ punctuation.bracket
 #                        ^ operator
 #                          ^^^ variable
@@ -143,7 +143,7 @@ foo_if := if foo == "x" { "val" } else if "1" != "2" { env("val") } else { bar }
 #                                             ^^ operator
 #                                                ^^^ string
 #                                                    ^ punctuation.bracket
-#                                                      ^^^ function.call
+#                                                      ^^^ function.builtin
 #                                                         ^ punctuation.bracket
 #                                                           ^^^^^ string
 #                                                                 ^ punctuation.bracket
@@ -153,7 +153,7 @@ foo_if := if foo == "x" { "val" } else if "1" != "2" { env("val") } else { bar }
 foo_fn := env("abc", foo)
 # <- variable
 #      ^^ operator
-#         ^^^ function.call
+#         ^^^ function.builtin
 #            ^ punctuation.bracket
 #             ^^^^ string
 #                  ^ punctuation.delimiter

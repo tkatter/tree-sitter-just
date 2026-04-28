@@ -22,6 +22,9 @@
 (recipe_header
   name: (identifier) @local.definition.function)
 
+(function
+  name: (identifier) @local.definition.function)
+
 ; References
 
 (alias

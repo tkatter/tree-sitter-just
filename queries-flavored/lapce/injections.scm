@@ -26,6 +26,7 @@
   (command_body) @injection.content
   (#set! injection.language "bash"))
 
+
 ; ================ Global language specified ================
 ; Global language is set with something like one of the following:
 ;

@@ -177,11 +177,15 @@ ALLOWED_CAPS_NVIM = {
 }
 
 ALLOWED_SETTINGS_NVIM = {
+    "highlights.scm": [
+        "conceal",
+        "priority",
+    ],
     "injections.scm": [
         "injection.combined",
         "injection.language",
         "injection.include-children",
-    ]
+    ],
 }
 
 # Old nvim-treesitter before updates
@@ -295,12 +299,13 @@ ALLOWED_CAPS_HELIX = {
 }
 
 ALLOWED_SETTINGS_HELIX = {
+    "highlights.scm": [],
     "injections.scm": [
         "injection.combined",
         "injection.language",
         "injection.include-children",
         "injection.include-unnamed-children",
-    ]
+    ],
 }
 
 REPLACEMENTS_HELIX = [

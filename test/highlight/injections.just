@@ -11,12 +11,12 @@ foo := `[ {{ dir(localhost) }} = "hi" ] && "bye"`
 # <- variable
 #   ^^ operator
 #      ^ punctuation.special
-#         ^^ punctuation.bracket
+#         ^^ punctuation.bracket conceal
 #            ^^^ function.call
 #               ^ punctuation.bracket
 #                ^^^^^^^^^ variable
 #                         ^ punctuation.bracket
-#                           ^^ punctuation.bracket
+#                           ^^ punctuation.bracket conceal
 #                                               ^ punctuation.special
 
 stuff := ```

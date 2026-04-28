@@ -15,15 +15,51 @@
   "shell"
 ] @keyword
 
-[
+([
   "if"
   "else"
 ] @keyword.conditional
+ (#set! priority 105))
 
 ; Variables
 
 (value
-  (identifier) @variable)
+  (identifier) @variable
+  (#set! priority 105))
+
+(value
+  (identifier) @constant
+  (#any-of? @constant
+    "HEX"
+    "HEXLOWER"
+    "HEXUPPER"
+    "PATH_SEP"
+    "PATH_VAR_SEP"
+    "CLEAR"
+    "NORMAL"
+    "BOLD"
+    "ITALIC"
+    "UNDERLINE"
+    "INVERT"
+    "HIDE"
+    "STRIKETHROUGH"
+    "BLACK"
+    "RED"
+    "GREEN"
+    "YELLOW"
+    "BLUE"
+    "MAGENTA"
+    "CYAN"
+    "WHITE"
+    "BG_BLACK"
+    "BG_RED"
+    "BG_GREEN"
+    "BG_YELLOW"
+    "BG_BLUE"
+    "BG_MAGENTA"
+    "BG_CYAN"
+    "BG_WHITE")
+  (#set! priority 110))
 
 (alias
   left: (identifier) @variable)
@@ -42,8 +78,108 @@
 (dependency_expression
   name: (target) @function.call)
 
+(assert) @function.call @function.builtin
+
+(function
+  name: (identifier) @function
+  parameters: (function_parameters
+    (identifier) @variable.parameter))
+
 (function_call
-  name: (identifier) @function.call)
+  name: (identifier) @function.call
+  (#set! priority 105))
+
+(function_call
+  name: (identifier) @function.builtin
+  (#any-of? @function.builtin
+    "arch"
+    "num_cpus"
+    "os"
+    "os_family"
+    "shell"
+    "env"
+    "env_var"
+    "env_var_or_default"
+    "require"
+    "which"
+    "is_dependency"
+    "invocation_directory"
+    "invocation_dir"
+    "invocation_directory_native"
+    "justfile"
+    "justfile_directory"
+    "justfile_dir"
+    "source_file"
+    "source_directory"
+    "source_dir"
+    "module_file"
+    "module_directory"
+    "module_dir"
+    "just_executable"
+    "just_pid"
+    "append"
+    "prepend"
+    "encode_uri_components"
+    "quote"
+    "replace"
+    "replace_regex"
+    "trim"
+    "trim_end"
+    "trim_end_match"
+    "trim_end_matches"
+    "trim_start"
+    "trim_start_match"
+    "trim_start_matches"
+    "capitalize"
+    "kebabcase"
+    "lowercamelcase"
+    "lowercase"
+    "shoutykebabcase"
+    "shoutysnakecase"
+    "snakecase"
+    "titlecase"
+    "uppercamelcase"
+    "uppercase"
+    "absolute_path"
+    "canonicalize"
+    "extension"
+    "file_name"
+    "file_stem"
+    "parent_directory"
+    "parent_dir"
+    "without_extension"
+    "clean"
+    "join"
+    "path_exists"
+    "read"
+    "error"
+    "blake3"
+    "blake3_file"
+    "sha256"
+    "sha256_file"
+    "uuid"
+    "choose"
+    "datetime"
+    "datetime_utc"
+    "semver_matches"
+    "style"
+    "cache_directory"
+    "cache_dir"
+    "config_directory"
+    "config_dir"
+    "config_local_directory"
+    "config_local_dir"
+    "data_directory"
+    "data_dir"
+    "data_local_directory"
+    "data_local_dir"
+    "executable_directory"
+    "executable_dir"
+    "home_directory"
+    "home_dir"
+    "runtime_directory"
+    "runtime_dir")
+  (#set! priority 110))
 
 ; Parameters
 
@@ -57,7 +193,7 @@
 
 ; Operators
 
-[
+([
   ":="
   "?"
   "=="
@@ -76,12 +212,20 @@
   "/"
   ":"
 ] @operator
+  (#set! priority 105))
 
 ; Punctuation
 
-"," @punctuation.delimiter
+("," @punctuation.delimiter
+  (#set! priority 105))
 
-[
+([
+  "{{"
+  "}}"
+] @conceal
+  (#set! conceal ""))
+
+([
   "{"
   "}"
   "["
@@ -91,19 +235,23 @@
   "{{"
   "}}"
 ] @punctuation.bracket
+  (#set! priority 105))
 
-[ "`" "```" ] @punctuation.special
+([ "`" "```" ] @punctuation.special
+  (#set! priority 105))
 
 ; Literals
 
-(boolean) @boolean
+((boolean) @boolean
+  (#set! priority 105))
 
 [
   (string)
   (external_command)
 ] @string
 
-(escape_sequence) @string.escape
+((escape_sequence) @string.escape
+  (#set! priority 105))
 
 ; Comments
 
@@ -140,13 +288,17 @@
   (#any-of? @attribute
     "arg"
     "confirm"
+    "default"
     "doc"
+    "dragonfly"
+    "env"
     "extension"
     "freebsd"
     "group"
     "linux"
     "macos"
     "metadata"
+    "netbsd"
     "no-cd"
     "no-exit-message"
     "no-quiet"
