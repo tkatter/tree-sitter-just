@@ -104,7 +104,7 @@
             "named": true
           },
           {
-            "type": "identifier",
+            "type": "expression",
             "named": true
           },
           {
@@ -757,6 +757,18 @@
             "named": false
           },
           {
+            "type": "default-list",
+            "named": false
+          },
+          {
+            "type": "default-script",
+            "named": false
+          },
+          {
+            "type": "dotenv-command",
+            "named": false
+          },
+          {
             "type": "dotenv-filename",
             "named": false
           },
@@ -793,7 +805,19 @@
             "named": false
           },
           {
+            "type": "indentation",
+            "named": false
+          },
+          {
             "type": "lazy",
+            "named": false
+          },
+          {
+            "type": "lists",
+            "named": false
+          },
+          {
+            "type": "minimum-version",
             "named": false
           },
           {
@@ -1205,6 +1229,18 @@
     "extra": true
   },
   {
+    "type": "default-list",
+    "named": false
+  },
+  {
+    "type": "default-script",
+    "named": false
+  },
+  {
+    "type": "dotenv-command",
+    "named": false
+  },
+  {
     "type": "dotenv-filename",
     "named": false
   },
@@ -1269,11 +1305,23 @@
     "named": false
   },
   {
+    "type": "indentation",
+    "named": false
+  },
+  {
     "type": "language",
     "named": true
   },
   {
     "type": "lazy",
+    "named": false
+  },
+  {
+    "type": "lists",
+    "named": false
+  },
+  {
+    "type": "minimum-version",
     "named": false
   },
   {

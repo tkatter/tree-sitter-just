@@ -160,7 +160,7 @@ corge: foo (quux corge + banana)
         (dependency
           (dependency_expression
             (target
-            (identifier))))))
+              (identifier))))))
     (recipe_body
       (recipe_line
         (text))))
@@ -305,7 +305,9 @@ foo:
     (attributes
       (attribute
         (identifier)
-        (string)))
+        (expression
+          (value
+            (string)))))
     (recipe_header
       (identifier))
     (recipe_body
@@ -327,7 +329,9 @@ fmt:
     (attributes
       (attribute
         (identifier)
-        (string)))
+        (expression
+          (value
+            (string)))))
     (recipe_header
       (identifier))
     (recipe_body
@@ -349,8 +353,12 @@ foo:
     (attributes
       (attribute
         (identifier)
-        (string)
-        (string)))
+        (expression
+          (value
+            (string)))
+        (expression
+          (value
+            (string)))))
     (recipe_header
       (identifier))
     (recipe_body
@@ -680,10 +688,14 @@ bar:
     (attributes
       (attribute
         (identifier)
-        (string))
+        (expression
+          (value
+            (string))))
       (attribute
         (identifier)
-        (string)))
+        (expression
+          (value
+            (string)))))
     (recipe_header
       (identifier))
     (recipe_body
@@ -693,7 +705,9 @@ bar:
     (attributes
       (attribute
         (identifier)
-        (string)))
+        (expression
+          (value
+            (string)))))
     (recipe_header
       (identifier))
     (recipe_body
@@ -733,7 +747,9 @@ bar:
     (attributes
       (attribute
         (identifier)
-        (string))
+        (expression
+          (value
+            (string))))
       (attribute
         (identifier)
         (string)))
@@ -758,7 +774,9 @@ double n:
     (attributes
       (attribute
         (identifier)
-        (string)
+        (expression
+          (value
+            (string)))
         (attribute_kv_argument
           (identifier)
           (string))))
@@ -791,8 +809,12 @@ foo bar:
     (attributes
       (attribute
         (identifier)
-        (string)
-        (identifier)))
+        (expression
+          (value
+            (string)))
+        (expression
+          (value
+            (identifier)))))
     (recipe_header
       (identifier)
       (parameters
@@ -821,7 +843,9 @@ build output:
     (attributes
       (attribute
         (identifier)
-        (string)
+        (expression
+          (value
+            (string)))
         (attribute_kv_argument
           (identifier)
           (string))
@@ -859,7 +883,9 @@ dangerous force="no":
     (attributes
       (attribute
         (identifier)
-        (string)
+        (expression
+          (value
+            (string)))
         (attribute_kv_argument
           (identifier)
           (string))
@@ -899,8 +925,12 @@ foo x:
         (identifier))
       (attribute
         (identifier)
-        (string)
-        (identifier)))
+        (expression
+          (value
+            (string)))
+        (expression
+          (value
+            (identifier)))))
     (recipe_header
       (identifier)
       (parameters
