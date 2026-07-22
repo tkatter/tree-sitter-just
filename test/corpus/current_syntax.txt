@@ -1,0 +1,88 @@
+================================================================================
+Current settings
+================================================================================
+
+set default-list
+set default-script := false
+set dotenv-command := "dotenv"
+set indentation := "  "
+set lists
+set minimum-version := "1.57.0"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (setting)
+  (setting
+    (boolean))
+  (setting
+    (string))
+  (setting
+    (string))
+  (setting)
+  (setting
+    (string)))
+
+================================================================================
+Expression attribute arguments and module dependency
+================================================================================
+
+directory := "workspace"
+
+[working-directory(justfile_directory())]
+build: core::compile
+    echo ok
+
+[doc(directory + " docs")]
+documented:
+
+[working-directory(`pwd`)]
+backtick:
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (expression
+      (value
+        (string))))
+  (recipe
+    (attributes
+      (attribute
+        (identifier)
+        (expression
+          (value
+            (function_call
+              (identifier))))))
+    (recipe_header
+      (identifier)
+      (dependencies
+        (dependency
+          (target
+            (identifier)
+            (identifier)))))
+    (recipe_body
+      (recipe_line
+        (text))))
+  (recipe
+    (attributes
+      (attribute
+        (identifier)
+        (expression
+          (value
+            (identifier))
+          (value
+            (string)))))
+    (recipe_header
+      (identifier)))
+  (recipe
+    (attributes
+      (attribute
+        (identifier)
+        (expression
+          (value
+            (external_command
+              (command_body))))))
+    (recipe_header
+      (identifier))))

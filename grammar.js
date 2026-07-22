@@ -156,6 +156,9 @@ export default grammar({
 
     // setting       : 'allow-duplicate-recipes' boolean?
     //               | 'allow-duplicate-variables' boolean?
+    //               | 'default-list' boolean?
+    //               | 'default-script' boolean?
+    //               | 'dotenv-command' ':=' string
     //               | 'dotenv-filename' ':=' string
     //               | 'dotenv-load' boolean?
     //               | 'dotenv-override' boolean?
@@ -165,7 +168,10 @@ export default grammar({
     //               | 'fallback' boolean?
     //               | 'guards' boolean?
     //               | 'ignore-comments' boolean?
+    //               | 'indentation' ':=' string
     //               | 'lazy' boolean?
+    //               | 'lists' boolean?
+    //               | 'minimum-version' ':=' string
     //               | 'no-cd' boolean?
     //               | 'no-exit-message' boolean?
     //               | 'positional-arguments' boolean?
@@ -181,6 +187,9 @@ export default grammar({
       choice(
         set_variant("allow-duplicate-recipes", $.boolean, true),
         set_variant("allow-duplicate-variables", $.boolean, true),
+        set_variant("default-list", $.boolean, true),
+        set_variant("default-script", $.boolean, true),
+        set_variant("dotenv-command", $.string),
         set_variant("dotenv-filename", $.string),
         set_variant("dotenv-load", $.boolean, true),
         set_variant("dotenv-override", $.boolean, true),
@@ -190,7 +199,10 @@ export default grammar({
         set_variant("fallback", $.boolean, true),
         set_variant("guards", $.boolean, true),
         set_variant("ignore-comments", $.boolean, true),
+        set_variant("indentation", $.string),
         set_variant("lazy", $.boolean, true),
+        set_variant("lists", $.boolean, true),
+        set_variant("minimum-version", $.string),
         set_variant("no-cd", $.boolean, true),
         set_variant("no-exit-message", $.boolean, true),
         set_variant("positional-arguments", $.boolean, true),
@@ -339,7 +351,9 @@ export default grammar({
     // attribute_kv_argument above.
     // attribute     : NAME
     //               | NAME ':' string
-    //               | NAME '(' string (',' string)* ')'
+    //               | NAME '(' attribute_argument (',' attribute_argument)* ')'
+    // attribute_argument : expression
+    //                    | NAME '=' string
     attribute: ($) =>
       seq(
         $.identifier,
@@ -350,9 +364,7 @@ export default grammar({
               "(",
               field(
                 "argument",
-                comma_sep1(
-                  choice($.string, $.identifier, $.attribute_kv_argument),
-                ),
+                comma_sep1(choice($.expression, $.attribute_kv_argument)),
               ),
               ")",
             ),
